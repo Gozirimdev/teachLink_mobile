@@ -271,7 +271,7 @@ export const DegradationNotificationsPanel: React.FC<DegradationNotificationsPan
 
   return (
     <View style={{ gap: 4 }}>
-      {unreadNotifications.map((notification) => (
+      {unreadNotifications.map(notification => (
         <View
           key={notification.id}
           style={{

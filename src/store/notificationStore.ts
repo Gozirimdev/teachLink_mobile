@@ -3,12 +3,12 @@ import { create } from 'zustand';
 import { createJSONStorage, persist } from 'zustand/middleware';
 
 import {
-    DEFAULT_NOTIFICATION_PREFERENCES,
-    NotificationData,
-    NotificationHistoryEntry,
-    NotificationPreferences,
-    NotificationType,
-    StoredNotification,
+  DEFAULT_NOTIFICATION_PREFERENCES,
+  NotificationData,
+  NotificationHistoryEntry,
+  NotificationPreferences,
+  NotificationType,
+  StoredNotification,
 } from '../types/notifications';
 
 interface NotificationState {
@@ -169,10 +169,10 @@ export const useNotificationStore = create<NotificationState>()(
             notifications = [newNotification, ...state.notifications].slice(0, 100);
           }
 
-          const notificationHistory = [
-            { fingerprint, receivedAt: now },
-            ...recentHistory,
-          ].slice(0, 200);
+          const notificationHistory = [{ fingerprint, receivedAt: now }, ...recentHistory].slice(
+            0,
+            200
+          );
 
           return {
             notifications,
@@ -288,21 +288,24 @@ export const useNotificationStore = create<NotificationState>()(
           if (Array.isArray(state.notifications)) {
             state.notifications = state.notifications.map((n: any) => ({
               ...n,
-              receivedAt: typeof n.receivedAt === 'string' ? new Date(n.receivedAt).getTime() : n.receivedAt,
+              receivedAt:
+                typeof n.receivedAt === 'string' ? new Date(n.receivedAt).getTime() : n.receivedAt,
             }));
           }
           // Convert history timestamps
           if (Array.isArray(state.notificationHistory)) {
             state.notificationHistory = state.notificationHistory.map((h: any) => ({
               ...h,
-              receivedAt: typeof h.receivedAt === 'string' ? new Date(h.receivedAt).getTime() : h.receivedAt,
+              receivedAt:
+                typeof h.receivedAt === 'string' ? new Date(h.receivedAt).getTime() : h.receivedAt,
             }));
           }
           // Convert throttle timestamps
           if (state.lastNotificationSentAtByType) {
             const converted: Record<string, number> = {};
             Object.entries(state.lastNotificationSentAtByType).forEach(([k, v]) => {
-              converted[k] = typeof v === 'string' ? new Date(v as string).getTime() : (v as number);
+              converted[k] =
+                typeof v === 'string' ? new Date(v as string).getTime() : (v as number);
             });
             state.lastNotificationSentAtByType = converted;
           }

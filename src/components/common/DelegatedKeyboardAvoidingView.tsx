@@ -25,13 +25,7 @@
  */
 
 import React, { useMemo } from 'react';
-import {
-    Platform,
-    StyleSheet,
-    View,
-    ViewProps,
-    ViewStyle
-} from 'react-native';
+import { Platform, StyleSheet, View, ViewProps, ViewStyle } from 'react-native';
 
 import { useKeyboardState } from './KeyboardDelegateProvider';
 
@@ -93,7 +87,7 @@ export const DelegatedKeyboardAvoidingView = ({
       {children}
     </View>
   );
-}
+};
 
 // ─── Styles ───────────────────────────────────────────────────────────────────
 

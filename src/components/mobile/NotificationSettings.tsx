@@ -1,12 +1,6 @@
 import { ChevronDown, ChevronUp } from 'lucide-react-native';
 import React, { memo, useState } from 'react';
-import {
-    ScrollView,
-    Switch,
-    Text,
-    TouchableOpacity,
-    View
-} from 'react-native';
+import { ScrollView, Switch, Text, TouchableOpacity, View } from 'react-native';
 
 import { useNotificationPermission } from '../../hooks';
 import { useNotificationStore } from '../../store/notificationStore';
@@ -55,7 +49,7 @@ export const NotificationSettings = () => {
   const { permissionStatus, requestPermission, openSettings, isLoading } =
     useNotificationPermission();
   const { preferences, setPreference, pushToken } = useNotificationStore();
-  const [savingKey, setSavingKey] = useState<keyof NotificationPreferences | null>(null);
+  const [, setSavingKey] = useState<keyof NotificationPreferences | null>(null);
 
   // Progressive disclosure: advanced notifications collapsed by default
   const [showAdvancedNotifications, setShowAdvancedNotifications] = useState(false);
@@ -224,6 +218,6 @@ export const NotificationSettings = () => {
       <View className="h-8" />
     </ScrollView>
   );
-}
+};
 
 export default NotificationSettings;

@@ -88,4 +88,4 @@ export const DeepLinkPrewarmProvider = ({ children }: DeepLinkPrewarmProviderPro
   }
 
   return <>{children}</>;
-}
+};

@@ -98,7 +98,7 @@ export const PullToRefresh = (props: PullToRefreshProps) => {
     return () => {
       mounted = false;
       // RN types vary by version; guard-remove.
-       
+
       (sub as any)?.remove?.();
     };
   }, []);
@@ -213,7 +213,7 @@ export const PullToRefresh = (props: PullToRefreshProps) => {
   return (
     <View className="flex-1 overflow-hidden" style={style} {...responderHandlers}>
       {showA11yFallbackButton && screenReaderEnabled ? (
-        <View className="px-3 pt-2 pb-1">
+        <View className="px-3 pb-1 pt-2">
           <Pressable
             accessibilityRole="button"
             accessibilityLabel={refreshA11yLabel}
@@ -221,7 +221,7 @@ export const PullToRefresh = (props: PullToRefreshProps) => {
               if (refreshing) return;
               void runRefresh();
             }}
-            className="self-start px-3 py-2 rounded-xl bg-gray-200"
+            className="self-start rounded-xl bg-gray-200 px-3 py-2"
           >
             <Animated.Text className="text-sm font-semibold text-gray-900">Refresh</Animated.Text>
           </Pressable>
@@ -256,4 +256,4 @@ export const PullToRefresh = (props: PullToRefreshProps) => {
       </Animated.View>
     </View>
   );
-}
+};

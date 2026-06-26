@@ -85,9 +85,7 @@ export const StartupProgressOverlay = () => {
 
         {/* Progress Text */}
         <View style={styles.statsContainer}>
-          <Text style={styles.progressText}>
-            {Math.round(progress)}%
-          </Text>
+          <Text style={styles.progressText}>{Math.round(progress)}%</Text>
           <Text style={styles.stepsText}>
             {completedCount} of {totalSteps} steps
           </Text>
@@ -111,7 +109,7 @@ export const StartupProgressOverlay = () => {
 
         {/* Step List */}
         <View style={styles.stepListContainer}>
-          {Array.from(steps.values()).map((step) => (
+          {Array.from(steps.values()).map(step => (
             <View key={step.id} style={styles.stepItem}>
               <View
                 style={[
@@ -132,8 +130,7 @@ export const StartupProgressOverlay = () => {
                   style={[
                     styles.stepIndicatorText,
                     {
-                      color:
-                        step.status === 'pending' ? '#9CA3AF' : '#FFFFFF',
+                      color: step.status === 'pending' ? '#9CA3AF' : '#FFFFFF',
                     },
                   ]}
                 >
@@ -151,16 +148,13 @@ export const StartupProgressOverlay = () => {
                   style={[
                     styles.stepItemName,
                     {
-                      opacity:
-                        step.status === 'pending' ? 0.5 : 1,
+                      opacity: step.status === 'pending' ? 0.5 : 1,
                     },
                   ]}
                 >
                   {step.name}
                 </Text>
-                {step.error && (
-                  <Text style={styles.stepError}>{step.error}</Text>
-                )}
+                {step.error && <Text style={styles.stepError}>{step.error}</Text>}
               </View>
             </View>
           ))}
@@ -168,7 +162,7 @@ export const StartupProgressOverlay = () => {
       </View>
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {

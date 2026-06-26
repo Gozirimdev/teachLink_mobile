@@ -367,7 +367,8 @@ apiClient.interceptors.response.use(
     // ─── ECONNABORTED: Timeout — user-friendly message ──────────────────────
 
     if (error.code === 'ECONNABORTED') {
-      const isUpload = originalRequest.method?.toUpperCase() === 'POST' &&
+      const isUpload =
+        originalRequest.method?.toUpperCase() === 'POST' &&
         originalRequest.data instanceof FormData;
       return Promise.reject({
         message: isUpload

@@ -55,7 +55,7 @@ export const useAppStore = create<AppState>()(
         refreshToken: null,
         sessionExpiresAt: null,
         sessionExpiringSoon: false,
-        theme: "light",
+        theme: 'light',
         isLoading: false,
         error: null,
         setUser: user => {

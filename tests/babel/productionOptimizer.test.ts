@@ -143,7 +143,7 @@ describe('productionOptimizer Babel Plugin', () => {
       `;
       const output = transformProduction(input);
 
-      expect(output).toBe("startApp();const Storybook=false;const AppEntry=App;");
+      expect(output).toBe('startApp();const Storybook=false;const AppEntry=App;');
       expect(output).not.toContain('DevTools');
       expect(output).not.toContain('rnstorybook');
     });

@@ -39,7 +39,9 @@ class ClipboardService {
         timestamp: Date.now(),
       };
 
-      logger.info(`[ClipboardService] Copied ${text.length} characters in ${duration.toFixed(2)}ms`);
+      logger.info(
+        `[ClipboardService] Copied ${text.length} characters in ${duration.toFixed(2)}ms`
+      );
 
       if (triggerHaptic && Platform.OS !== 'web') {
         try {
@@ -74,7 +76,9 @@ class ClipboardService {
         timestamp: Date.now(),
       };
 
-      logger.info(`[ClipboardService] Pasted ${text ? text.length : 0} characters in ${duration.toFixed(2)}ms`);
+      logger.info(
+        `[ClipboardService] Pasted ${text ? text.length : 0} characters in ${duration.toFixed(2)}ms`
+      );
 
       return text || '';
     } catch (error) {

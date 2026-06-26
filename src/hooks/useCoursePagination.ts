@@ -21,13 +21,9 @@ export interface UseCoursePaginationResult {
 }
 
 export function useCoursePagination(
-  options: UseCoursePaginationOptions = {},
+  options: UseCoursePaginationOptions = {}
 ): UseCoursePaginationResult {
-  const {
-    initialLimit = 20,
-    orderBy = 'id',
-    direction = 'asc',
-  } = options;
+  const { initialLimit = 20, orderBy = 'id', direction = 'asc' } = options;
 
   const [items, setItems] = useState<Course[]>([]);
   const [nextCursor, setNextCursor] = useState<string | null>(null);
@@ -35,37 +31,40 @@ export function useCoursePagination(
   const [isLoading, setIsLoading] = useState(false);
   const [isRefreshing, setIsRefreshing] = useState(false);
 
-  const fetchPage = useCallback(async (cursor?: string) => {
-    if (isLoading) {
-      return;
-    }
+  const fetchPage = useCallback(
+    async (cursor?: string) => {
+      if (isLoading) {
+        return;
+      }
 
-    setIsLoading(true);
+      setIsLoading(true);
 
-    const request: CursorPageRequest = {
-      limit: initialLimit,
-      cursor,
-      orderBy,
-      direction,
-    };
+      const request: CursorPageRequest = {
+        limit: initialLimit,
+        cursor,
+        orderBy,
+        direction,
+      };
 
-    try {
-      const response = await courseApi.getCoursesPage(request);
+      try {
+        const response = await courseApi.getCoursesPage(request);
 
-      setItems((previous) => {
-        if (!cursor) {
-          return response.items;
-        }
+        setItems(previous => {
+          if (!cursor) {
+            return response.items;
+          }
 
-        const existingIds = new Set(previous.map((course) => course.id));
-        return [...previous, ...response.items.filter((course) => !existingIds.has(course.id))];
-      });
-      setNextCursor(response.nextCursor);
-      setHasMore(response.hasMore);
-    } finally {
-      setIsLoading(false);
-    }
-  }, [direction, initialLimit, isLoading, orderBy]);
+          const existingIds = new Set(previous.map(course => course.id));
+          return [...previous, ...response.items.filter(course => !existingIds.has(course.id))];
+        });
+        setNextCursor(response.nextCursor);
+        setHasMore(response.hasMore);
+      } finally {
+        setIsLoading(false);
+      }
+    },
+    [direction, initialLimit, isLoading, orderBy]
+  );
 
   const refresh = useCallback(async () => {
     setIsRefreshing(true);

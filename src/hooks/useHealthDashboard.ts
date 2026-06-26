@@ -10,14 +10,11 @@
 
 import { useCallback, useEffect, useRef } from 'react';
 
+import { AlertThresholds, healthMetricsService } from '../services/healthMetrics';
 import {
-    AlertThresholds,
-    healthMetricsService,
-} from '../services/healthMetrics';
-import {
-    selectOverallStatus,
-    selectVisibleAlerts,
-    useHealthDashboardStore,
+  selectOverallStatus,
+  selectVisibleAlerts,
+  useHealthDashboardStore,
 } from '../store/healthDashboardStore';
 import { appLogger } from '../utils/logger';
 

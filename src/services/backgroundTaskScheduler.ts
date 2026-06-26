@@ -20,7 +20,7 @@ class BackgroundTaskScheduler {
   private async processQueue() {
     if (this.isProcessing || this.taskQueue.length === 0) return;
     this.isProcessing = true;
-    
+
     const task = this.taskQueue.shift();
     if (task) {
       try {

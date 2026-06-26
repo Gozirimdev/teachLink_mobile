@@ -1,12 +1,5 @@
 import React from 'react';
-import {
-  ActivityIndicator,
-  Platform,
-  Pressable,
-  StyleSheet,
-  Text,
-  View,
-} from 'react-native';
+import { ActivityIndicator, Platform, Pressable, StyleSheet, Text, View } from 'react-native';
 
 import { AccessibleModal } from './AccessibleModal';
 import { UpdateCheckResult, UpdateType } from '../../services/appUpdateService';

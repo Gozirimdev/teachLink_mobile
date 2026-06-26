@@ -34,9 +34,7 @@ describe('MemoizedIcon — SVG Memoization (#361)', () => {
     });
 
     it('should update when direction changes', () => {
-      const { rerender } = render(
-        <MemoizedSortIcon direction="asc" size={13} />
-      );
+      const { rerender } = render(<MemoizedSortIcon direction="asc" size={13} />);
       rerender(<MemoizedSortIcon direction="desc" size={13} />);
       // Should re-render because direction changed
       expect(true).toBe(true);
@@ -59,12 +57,8 @@ describe('MemoizedIcon — SVG Memoization (#361)', () => {
     });
 
     it('should use correct color for direction', () => {
-      const { container: ascContainer } = render(
-        <MemoizedSortIcon direction="asc" size={13} />
-      );
-      const { container: nullContainer } = render(
-        <MemoizedSortIcon direction={null} size={13} />
-      );
+      const { container: ascContainer } = render(<MemoizedSortIcon direction="asc" size={13} />);
+      const { container: nullContainer } = render(<MemoizedSortIcon direction={null} size={13} />);
 
       // Both should render without error
       expect(ascContainer).toBeDefined();
@@ -88,9 +82,7 @@ describe('MemoizedIcon — SVG Memoization (#361)', () => {
 
     it('should update when size prop changes', () => {
       const MemoizedDownload = createMemoizedIcon(Download, 'TestIcon');
-      const { rerender } = render(
-        <MemoizedDownload size={20} color="#000" />
-      );
+      const { rerender } = render(<MemoizedDownload size={20} color="#000" />);
       rerender(<MemoizedDownload size={24} color="#000" />);
       // Should re-render because size changed
       expect(true).toBe(true);
@@ -98,9 +90,7 @@ describe('MemoizedIcon — SVG Memoization (#361)', () => {
 
     it('should update when color prop changes', () => {
       const MemoizedDownload = createMemoizedIcon(Download, 'TestIcon');
-      const { rerender } = render(
-        <MemoizedDownload size={20} color="#000" />
-      );
+      const { rerender } = render(<MemoizedDownload size={20} color="#000" />);
       rerender(<MemoizedDownload size={20} color="#fff" />);
       // Should re-render because color changed
       expect(true).toBe(true);
@@ -139,31 +129,19 @@ describe('MemoizedIcon — SVG Memoization (#361)', () => {
 
     it('should render download button without task', () => {
       const { getByText } = render(
-        <DownloadButton
-          id="test-1"
-          title="Test Download"
-          url="https://example.com/file.zip"
-        />
+        <DownloadButton id="test-1" title="Test Download" url="https://example.com/file.zip" />
       );
       expect(getByText('Download')).toBeDefined();
     });
 
     it('should render with different states', () => {
       const { rerender } = render(
-        <DownloadButton
-          id="test-1"
-          title="Test Download"
-          url="https://example.com/file.zip"
-        />
+        <DownloadButton id="test-1" title="Test Download" url="https://example.com/file.zip" />
       );
 
       // Should render without error on multiple renders
       rerender(
-        <DownloadButton
-          id="test-1"
-          title="Test Download"
-          url="https://example.com/file.zip"
-        />
+        <DownloadButton id="test-1" title="Test Download" url="https://example.com/file.zip" />
       );
 
       expect(true).toBe(true);

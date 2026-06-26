@@ -1,11 +1,5 @@
 import React from 'react';
-import {
-  View,
-  Text,
-  TouchableOpacity,
-  StyleSheet,
-  Animated,
-} from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, Animated } from 'react-native';
 
 import { useRequestTimeout, REQUEST_TIMEOUT_MS } from '../../hooks/useRequestTimeout';
 
@@ -30,8 +24,7 @@ export const RequestTimeoutOverlay = ({
   timeoutMs = REQUEST_TIMEOUT_MS,
   message = 'Waiting for response…',
 }: RequestTimeoutOverlayProps) => {
-  const { progress, remaining, isTimedOut, start, reset } =
-    useRequestTimeout(timeoutMs);
+  const { progress, remaining, isTimedOut, start, reset } = useRequestTimeout(timeoutMs);
 
   // Start countdown when loading begins, reset when it ends
   React.useEffect(() => {
@@ -54,9 +47,7 @@ export const RequestTimeoutOverlay = ({
   return (
     <View style={styles.container} accessibilityLiveRegion="polite">
       {/* Message + countdown */}
-      <Text style={styles.message}>
-        {isTimedOut ? 'Request timed out' : message}
-      </Text>
+      <Text style={styles.message}>{isTimedOut ? 'Request timed out' : message}</Text>
       {!isTimedOut && (
         <Text style={styles.countdown} accessibilityLabel={`${secondsLeft} seconds remaining`}>
           {secondsLeft}s
@@ -81,7 +72,7 @@ export const RequestTimeoutOverlay = ({
       )}
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {

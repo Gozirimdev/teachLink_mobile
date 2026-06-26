@@ -3,8 +3,8 @@ import { usePathname } from 'expo-router';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { Animated, ScrollView } from 'react-native';
 
-import { scrollPositionService } from '../services/scrollPositionService';
-import logger from '../utils/logger';
+import { scrollPositionService } from '../src/services/scrollPositionService';
+import logger from '../src/utils/logger';
 
 export interface UseScrollRestorationOptions {
   /**

@@ -73,7 +73,13 @@ export function getCacheHitRate(): number {
   return total === 0 ? 0 : cacheHits / total;
 }
 
-export function getCacheStats(): { hitRate: number; totalSize: number; entryCount: number; hits: number; misses: number } {
+export function getCacheStats(): {
+  hitRate: number;
+  totalSize: number;
+  entryCount: number;
+  hits: number;
+  misses: number;
+} {
   return {
     hitRate: getCacheHitRate(),
     totalSize: metadata.totalSize,

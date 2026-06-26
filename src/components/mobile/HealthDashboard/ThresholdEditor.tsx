@@ -6,13 +6,7 @@
  */
 
 import React, { useState } from 'react';
-import {
-    StyleSheet,
-    Text,
-    TextInput,
-    TouchableOpacity,
-    View,
-} from 'react-native';
+import { StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 
 import type { AlertThresholds } from '../../../services/healthMetrics';
 
@@ -38,10 +32,7 @@ const FIELDS: FieldConfig[] = [
   { key: 'apiErrorRateCritical', label: 'API Error Rate Critical', unit: '%' },
 ];
 
-export const ThresholdEditor: React.FC<ThresholdEditorProps> = ({
-  thresholds,
-  onChange,
-}) => {
+export const ThresholdEditor: React.FC<ThresholdEditorProps> = ({ thresholds, onChange }) => {
   const [expanded, setExpanded] = useState(false);
 
   const handleChange = (key: keyof AlertThresholds, raw: string) => {
@@ -54,7 +45,7 @@ export const ThresholdEditor: React.FC<ThresholdEditorProps> = ({
   return (
     <View style={styles.container}>
       <TouchableOpacity
-        onPress={() => setExpanded((v) => !v)}
+        onPress={() => setExpanded(v => !v)}
         style={styles.toggle}
         accessibilityRole="button"
         accessibilityLabel="Toggle threshold settings"
@@ -74,7 +65,7 @@ export const ThresholdEditor: React.FC<ThresholdEditorProps> = ({
               <TextInput
                 style={styles.input}
                 value={String(thresholds[key])}
-                onChangeText={(v) => handleChange(key, v)}
+                onChangeText={v => handleChange(key, v)}
                 keyboardType="numeric"
                 accessibilityLabel={`${label} threshold`}
                 returnKeyType="done"

@@ -36,7 +36,6 @@ export const NativeToggle = ({
   activeThumbColor = '#0099b3',
 }: NativeToggleProps) => {
   const handleChange = (newValue: boolean) => {
-     
     useHapticFeedback('light');
     onValueChange(newValue);
   };
@@ -70,6 +69,6 @@ export const NativeToggle = ({
       {switchControl}
     </TouchableOpacity>
   );
-}
+};
 
 export default NativeToggle;

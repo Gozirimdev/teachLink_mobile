@@ -37,7 +37,7 @@ const NotificationTypeItem = ({ icon, title, description }: NotificationTypeItem
       </View>
     </View>
   );
-}
+};
 
 export const NotificationPrompt = ({
   visible,
@@ -179,6 +179,6 @@ export const NotificationPrompt = ({
       </Modal>
     </ErrorBoundary>
   );
-}
+};
 
 export default NotificationPrompt;

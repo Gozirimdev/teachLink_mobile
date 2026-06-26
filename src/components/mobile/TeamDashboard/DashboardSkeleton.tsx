@@ -24,7 +24,7 @@ export const DashboardSkeleton: React.FC<DashboardSkeletonProps> = ({ isDark = f
 
       {/* View tabs */}
       <View style={styles.tabs}>
-        {[1, 2, 3, 4].map((i) => (
+        {[1, 2, 3, 4].map(i => (
           <Skeleton key={i} width={72} height={32} borderRadius={16} />
         ))}
       </View>
@@ -40,7 +40,7 @@ export const DashboardSkeleton: React.FC<DashboardSkeletonProps> = ({ isDark = f
 
       {/* Metric grid */}
       <View style={styles.grid}>
-        {[1, 2, 3, 4].map((i) => (
+        {[1, 2, 3, 4].map(i => (
           <Skeleton key={i} width="48%" height={90} borderRadius={12} />
         ))}
       </View>

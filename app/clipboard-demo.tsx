@@ -70,16 +70,14 @@ const MetricRow = ({
       </AppText>
     </View>
   );
-}
+};
 
 const BenchmarkRow = ({ entry }: { entry: BenchmarkEntry }) => {
   const sizeLabel =
-    entry.sizeKb >= 1000
-      ? `${(entry.sizeKb / 1000).toFixed(1)} MB`
-      : `${entry.sizeKb} KB`;
+    entry.sizeKb >= 1000 ? `${(entry.sizeKb / 1000).toFixed(1)} MB` : `${entry.sizeKb} KB`;
 
   return (
-    <View className="flex-row items-center gap-3 py-2.5 border-b border-gray-100 dark:border-gray-700">
+    <View className="flex-row items-center gap-3 border-b border-gray-100 py-2.5 dark:border-gray-700">
       {/* Op badge */}
       <View
         className={`h-7 w-7 items-center justify-center rounded-lg ${
@@ -97,10 +95,10 @@ const BenchmarkRow = ({ entry }: { entry: BenchmarkEntry }) => {
 
       {/* Details */}
       <View className="flex-1">
-        <AppText className="text-xs font-semibold text-gray-800 dark:text-gray-200 capitalize">
+        <AppText className="text-xs font-semibold capitalize text-gray-800 dark:text-gray-200">
           {entry.operation} · {sizeLabel}
         </AppText>
-        <AppText className="text-[10px] text-gray-400 dark:text-gray-500 mt-0.5">
+        <AppText className="mt-0.5 text-[10px] text-gray-400 dark:text-gray-500">
           {entry.throughputKbps.toFixed(0)} KB/s · {entry.durationMs.toFixed(1)} ms
         </AppText>
       </View>
@@ -113,7 +111,7 @@ const BenchmarkRow = ({ entry }: { entry: BenchmarkEntry }) => {
       )}
     </View>
   );
-}
+};
 
 // ─── Screen ───────────────────────────────────────────────────────────────────
 
@@ -176,11 +174,10 @@ export default function ClipboardDemoScreen() {
       success,
       timestamp: new Date(),
     };
-    setBenchmarkHistory((prev) => [entry, ...prev].slice(0, 20));
+    setBenchmarkHistory(prev => [entry, ...prev].slice(0, 20));
   };
 
-  const formatTime = (ms: number | undefined) =>
-    ms === undefined ? '—' : `${ms.toFixed(2)} ms`;
+  const formatTime = (ms: number | undefined) => (ms === undefined ? '—' : `${ms.toFixed(2)} ms`);
 
   const formatSize = (chars: number | undefined) => {
     if (chars === undefined) return '—';
@@ -192,8 +189,7 @@ export default function ClipboardDemoScreen() {
 
   const avgThroughput =
     benchmarkHistory.length > 0
-      ? benchmarkHistory.reduce((s, e) => s + e.throughputKbps, 0) /
-        benchmarkHistory.length
+      ? benchmarkHistory.reduce((s, e) => s + e.throughputKbps, 0) / benchmarkHistory.length
       : null;
 
   // ── Handlers ───────────────────────────────────────────────────────────────
@@ -271,7 +267,7 @@ export default function ClipboardDemoScreen() {
         {/* Live throughput badge */}
         {avgThroughput !== null && (
           <View className="items-center rounded-xl bg-cyan-50 px-3 py-1.5 dark:bg-cyan-900/30">
-            <AppText className="text-[10px] text-cyan-500 dark:text-cyan-400 font-medium">
+            <AppText className="text-[10px] font-medium text-cyan-500 dark:text-cyan-400">
               avg speed
             </AppText>
             <AppText className="text-xs font-bold text-cyan-600 dark:text-cyan-300">
@@ -285,15 +281,13 @@ export default function ClipboardDemoScreen() {
 
       {/* ── Tab bar ── */}
       <View className="flex-row border-b border-gray-200 bg-white dark:border-gray-800 dark:bg-gray-900">
-        {(['test', 'history'] as const).map((tab) => (
+        {(['test', 'history'] as const).map(tab => (
           <TouchableOpacity
             key={tab}
             activeOpacity={0.7}
             onPress={() => setActiveTab(tab)}
-            className={`flex-1 items-center py-3 border-b-2 ${
-              activeTab === tab
-                ? 'border-cyan-500'
-                : 'border-transparent'
+            className={`flex-1 items-center border-b-2 py-3 ${
+              activeTab === tab ? 'border-cyan-500' : 'border-transparent'
             }`}
           >
             <AppText
@@ -303,7 +297,9 @@ export default function ClipboardDemoScreen() {
                   : 'text-gray-400 dark:text-gray-500'
               }`}
             >
-              {tab === 'test' ? 'Test Pad' : `History${benchmarkHistory.length > 0 ? ` (${benchmarkHistory.length})` : ''}`}
+              {tab === 'test'
+                ? 'Test Pad'
+                : `History${benchmarkHistory.length > 0 ? ` (${benchmarkHistory.length})` : ''}`}
             </AppText>
           </TouchableOpacity>
         ))}
@@ -316,22 +312,21 @@ export default function ClipboardDemoScreen() {
           showsVerticalScrollIndicator={false}
         >
           {/* ── Intro banner ── */}
-          <View className="mb-5 overflow-hidden rounded-2xl bg-cyan-500 dark:bg-cyan-700 p-5">
-            <View className="flex-row items-center gap-2 mb-1.5">
+          <View className="mb-5 overflow-hidden rounded-2xl bg-cyan-500 p-5 dark:bg-cyan-700">
+            <View className="mb-1.5 flex-row items-center gap-2">
               <Sparkles size={18} color="white" />
               <AppText className="text-sm font-bold text-white">
                 Non-blocking clipboard transfers
               </AppText>
             </View>
-            <AppText className="text-xs text-cyan-50 leading-5">
-              Async native APIs + InteractionManager scheduling keep animations
-              and gestures smooth even while reading or writing 2 MB+ payloads
-              across the JS bridge.
+            <AppText className="text-xs leading-5 text-cyan-50">
+              Async native APIs + InteractionManager scheduling keep animations and gestures smooth
+              even while reading or writing 2 MB+ payloads across the JS bridge.
             </AppText>
           </View>
 
           {/* ── Size selector ── */}
-          <View className="mb-5 rounded-2xl border border-gray-200 bg-white p-5 dark:border-gray-800 dark:bg-gray-800 shadow-sm">
+          <View className="mb-5 rounded-2xl border border-gray-200 bg-white p-5 shadow-sm dark:border-gray-800 dark:bg-gray-800">
             <AppText className="mb-1 text-sm font-bold text-gray-900 dark:text-white">
               1 · Choose payload size
             </AppText>
@@ -339,7 +334,7 @@ export default function ClipboardDemoScreen() {
               Simulate large course materials, exported logs, or report pastes.
             </AppText>
 
-            <View className="flex-row flex-wrap gap-2 mb-4">
+            <View className="mb-4 flex-row flex-wrap gap-2">
               {SIZE_OPTIONS.map(({ kb, label }) => {
                 const active = selectedSize === kb;
                 return (
@@ -347,9 +342,9 @@ export default function ClipboardDemoScreen() {
                     key={kb}
                     activeOpacity={0.7}
                     onPress={() => generateLargeText(kb)}
-                    className={`flex-1 min-w-[70px] items-center justify-center rounded-xl py-2.5 border ${
+                    className={`min-w-[70px] flex-1 items-center justify-center rounded-xl border py-2.5 ${
                       active
-                        ? 'bg-cyan-500 border-cyan-500'
+                        ? 'border-cyan-500 bg-cyan-500'
                         : 'border-gray-200 bg-gray-50 dark:border-gray-700 dark:bg-gray-900'
                     }`}
                   >
@@ -369,7 +364,7 @@ export default function ClipboardDemoScreen() {
               multiline
               editable={!isCopying && !isPasting}
               value={testText}
-              onChangeText={(txt) => {
+              onChangeText={txt => {
                 setTestText(txt);
                 setSelectedSize(null);
               }}
@@ -396,7 +391,7 @@ export default function ClipboardDemoScreen() {
                   className="flex-row items-center gap-1"
                 >
                   <Trash2 size={11} color="#ef4444" />
-                  <AppText className="text-xs text-red-500 font-semibold">Clear</AppText>
+                  <AppText className="text-xs font-semibold text-red-500">Clear</AppText>
                 </TouchableOpacity>
               )}
             </View>
@@ -408,14 +403,16 @@ export default function ClipboardDemoScreen() {
           </AppText>
 
           <Animated.View
-            style={{ opacity: flashAnim.interpolate({ inputRange: [0, 1], outputRange: [1, 0.6] }) }}
+            style={{
+              opacity: flashAnim.interpolate({ inputRange: [0, 1], outputRange: [1, 0.6] }),
+            }}
             className="mb-5 flex-row gap-3"
           >
             <TouchableOpacity
               activeOpacity={0.8}
               disabled={isCopying || isPasting}
               onPress={handleCopy}
-              className={`flex-1 flex-row items-center justify-center rounded-2xl py-4 gap-2 shadow-sm ${
+              className={`flex-1 flex-row items-center justify-center gap-2 rounded-2xl py-4 shadow-sm ${
                 isCopying ? 'bg-cyan-200 dark:bg-cyan-900' : 'bg-cyan-500 dark:bg-cyan-600'
               }`}
             >
@@ -424,7 +421,7 @@ export default function ClipboardDemoScreen() {
               ) : (
                 <Copy size={15} color="white" />
               )}
-              <AppText className="font-semibold text-white text-sm">
+              <AppText className="text-sm font-semibold text-white">
                 {isCopying ? 'Copying…' : copySuccess ? 'Copied ✓' : 'Copy'}
               </AppText>
             </TouchableOpacity>
@@ -433,10 +430,10 @@ export default function ClipboardDemoScreen() {
               activeOpacity={0.8}
               disabled={isCopying || isPasting}
               onPress={handlePaste}
-              className={`flex-1 flex-row items-center justify-center rounded-2xl py-4 gap-2 border shadow-sm ${
+              className={`flex-1 flex-row items-center justify-center gap-2 rounded-2xl border py-4 shadow-sm ${
                 isPasting
-                  ? 'bg-gray-100 border-gray-200 dark:bg-gray-800 dark:border-gray-700'
-                  : 'bg-white border-cyan-500 dark:bg-gray-800 dark:border-cyan-600'
+                  ? 'border-gray-200 bg-gray-100 dark:border-gray-700 dark:bg-gray-800'
+                  : 'border-cyan-500 bg-white dark:border-cyan-600 dark:bg-gray-800'
               }`}
             >
               {isPasting ? (
@@ -444,7 +441,7 @@ export default function ClipboardDemoScreen() {
               ) : (
                 <Clipboard size={15} color="#06b6d4" />
               )}
-              <AppText className="font-semibold text-cyan-500 dark:text-cyan-400 text-sm">
+              <AppText className="text-sm font-semibold text-cyan-500 dark:text-cyan-400">
                 {isPasting ? 'Pasting…' : 'Paste'}
               </AppText>
             </TouchableOpacity>
@@ -452,8 +449,8 @@ export default function ClipboardDemoScreen() {
 
           {/* ── Metrics panel ── */}
           {metrics && (
-            <View className="mb-5 rounded-2xl border border-gray-200 bg-white p-5 dark:border-gray-800 dark:bg-gray-800 shadow-sm">
-              <View className="flex-row items-center gap-2 mb-3">
+            <View className="mb-5 rounded-2xl border border-gray-200 bg-white p-5 shadow-sm dark:border-gray-800 dark:bg-gray-800">
+              <View className="mb-3 flex-row items-center gap-2">
                 <Zap size={15} color="#eab308" />
                 <AppText className="text-sm font-bold text-gray-900 dark:text-white">
                   Last operation
@@ -476,8 +473,8 @@ export default function ClipboardDemoScreen() {
           )}
 
           {/* ── Paste preview ── */}
-          <View className="mb-5 rounded-2xl border border-gray-200 bg-white p-5 dark:border-gray-800 dark:bg-gray-800 shadow-sm">
-            <View className="flex-row items-center gap-2 mb-3">
+          <View className="mb-5 rounded-2xl border border-gray-200 bg-white p-5 shadow-sm dark:border-gray-800 dark:bg-gray-800">
+            <View className="mb-3 flex-row items-center gap-2">
               <FileText size={15} color="#6b7280" />
               <AppText className="text-sm font-bold text-gray-900 dark:text-white">
                 Paste preview
@@ -501,10 +498,9 @@ export default function ClipboardDemoScreen() {
               <AppText className="text-xs font-semibold text-orange-800 dark:text-orange-300">
                 Bridge size limit
               </AppText>
-              <AppText className="text-[11px] leading-4 text-orange-700 dark:text-orange-400 mt-0.5">
-                Payloads above 2 MB may trigger React Native IPC warnings.
-                Start with 100 KB and scale up to observe how async scheduling
-                keeps your UI responsive.
+              <AppText className="mt-0.5 text-[11px] leading-4 text-orange-700 dark:text-orange-400">
+                Payloads above 2 MB may trigger React Native IPC warnings. Start with 100 KB and
+                scale up to observe how async scheduling keeps your UI responsive.
               </AppText>
             </View>
           </View>
@@ -517,29 +513,24 @@ export default function ClipboardDemoScreen() {
           showsVerticalScrollIndicator={false}
         >
           {benchmarkHistory.length === 0 ? (
-            <View className="flex-1 items-center justify-center py-24 gap-3">
+            <View className="flex-1 items-center justify-center gap-3 py-24">
               <BarChart2 size={40} color="#d1d5db" />
-              <AppText className="text-sm text-gray-400 dark:text-gray-500 text-center">
+              <AppText className="text-center text-sm text-gray-400 dark:text-gray-500">
                 No benchmarks yet.{'\n'}Run a copy or paste to record results.
               </AppText>
             </View>
           ) : (
             <>
               {/* Summary stats */}
-              <View className="mb-5 rounded-2xl border border-gray-200 bg-white p-5 dark:border-gray-800 dark:bg-gray-800 shadow-sm">
+              <View className="mb-5 rounded-2xl border border-gray-200 bg-white p-5 shadow-sm dark:border-gray-800 dark:bg-gray-800">
                 <AppText className="mb-3 text-sm font-bold text-gray-900 dark:text-white">
                   Session summary
                 </AppText>
-                <MetricRow
-                  label="Runs recorded"
-                  value={String(benchmarkHistory.length)}
-                />
+                <MetricRow label="Runs recorded" value={String(benchmarkHistory.length)} />
                 <MetricRow
                   label="Success rate"
                   value={`${Math.round(
-                    (benchmarkHistory.filter((e) => e.success).length /
-                      benchmarkHistory.length) *
-                      100
+                    (benchmarkHistory.filter(e => e.success).length / benchmarkHistory.length) * 100
                   )}%`}
                   accent
                 />
@@ -555,22 +546,22 @@ export default function ClipboardDemoScreen() {
                 />
                 <MetricRow
                   label="Fastest run"
-                  value={`${Math.min(...benchmarkHistory.map((e) => e.durationMs)).toFixed(1)} ms`}
+                  value={`${Math.min(...benchmarkHistory.map(e => e.durationMs)).toFixed(1)} ms`}
                   last
                 />
               </View>
 
               {/* Log */}
-              <View className="rounded-2xl border border-gray-200 bg-white px-4 dark:border-gray-800 dark:bg-gray-800 shadow-sm">
-                <View className="flex-row items-center justify-between py-3.5 border-b border-gray-100 dark:border-gray-700">
+              <View className="rounded-2xl border border-gray-200 bg-white px-4 shadow-sm dark:border-gray-800 dark:bg-gray-800">
+                <View className="flex-row items-center justify-between border-b border-gray-100 py-3.5 dark:border-gray-700">
                   <AppText className="text-sm font-bold text-gray-900 dark:text-white">
                     Run log
                   </AppText>
                   <TouchableOpacity onPress={() => setBenchmarkHistory([])}>
-                    <AppText className="text-xs text-red-400 font-semibold">Clear all</AppText>
+                    <AppText className="text-xs font-semibold text-red-400">Clear all</AppText>
                   </TouchableOpacity>
                 </View>
-                {benchmarkHistory.map((entry) => (
+                {benchmarkHistory.map(entry => (
                   <BenchmarkRow key={entry.id} entry={entry} />
                 ))}
               </View>

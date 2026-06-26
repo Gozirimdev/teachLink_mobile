@@ -3,15 +3,15 @@ import { AlertCircle, BookOpen, Lock, Mail, User } from 'lucide-react-native';
 import React, { useRef, useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import {
-    ActivityIndicator,
-    Platform,
-    SafeAreaView,
-    ScrollView,
-    StyleSheet,
-    Text,
-    TextInput,
-    TouchableOpacity,
-    View,
+  ActivityIndicator,
+  Platform,
+  SafeAreaView,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
 } from 'react-native';
 
 import { DelegatedKeyboardAvoidingView } from '../../components/common/DelegatedKeyboardAvoidingView';
@@ -21,11 +21,11 @@ import { useFormCache } from '../../hooks/useFormCache';
 import { useFormValidation } from '../../hooks/useFormValidation';
 import { cacheFormValues } from '../../services/formCache';
 import {
-    getPasswordStrength,
-    validateConfirmPassword,
-    validateEmail,
-    validateName,
-    validatePassword,
+  getPasswordStrength,
+  validateConfirmPassword,
+  validateEmail,
+  validateName,
+  validatePassword,
 } from '../../utils/validation';
 
 interface MobileRegisterProps {

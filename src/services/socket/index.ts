@@ -146,7 +146,7 @@ class SocketService {
 
     const end = performance.now();
     appLogger.info(
-      `[Socket Out] Event: ${event}, size: ${(sizeBytes / 1024).toFixed(2)} KB, dispatch time: ${(end - start).toFixed(2)}ms`,
+      `[Socket Out] Event: ${event}, size: ${(sizeBytes / 1024).toFixed(2)} KB, dispatch time: ${(end - start).toFixed(2)}ms`
     );
   }
 
@@ -154,7 +154,8 @@ class SocketService {
     this.emit(message.event, {
       ...message,
       baseEntity:
-        message.baseEntity ?? syncEntityManager.getBase(message.entity.entityType, message.entity.id),
+        message.baseEntity ??
+        syncEntityManager.getBase(message.entity.entityType, message.entity.id),
     });
   }
 
@@ -171,7 +172,7 @@ class SocketService {
 
       const end = performance.now();
       appLogger.info(
-        `[Socket In] Event: ${event}, size: ${(sizeBytes / 1024).toFixed(2)} KB, callback process time: ${(end - start).toFixed(2)}ms`,
+        `[Socket In] Event: ${event}, size: ${(sizeBytes / 1024).toFixed(2)} KB, callback process time: ${(end - start).toFixed(2)}ms`
       );
     });
   }
@@ -226,7 +227,7 @@ class SocketService {
     const strategy = data.strategy ?? this.defaultStrategyForEvent(event);
     const result = syncEntityManager.handleServerEntity(data.entity, strategy, data.baseEntity);
     appLogger.info(
-      `Resolved sync update for ${data.entity.entityType}:${data.entity.id} using ${result.strategy}`,
+      `Resolved sync update for ${data.entity.entityType}:${data.entity.id} using ${result.strategy}`
     );
   }
 
@@ -238,13 +239,13 @@ class SocketService {
 
     return Boolean(
       message.event &&
-        entity &&
-        typeof entity.id === 'string' &&
-        typeof entity.entityType === 'string' &&
-        typeof entity.version === 'number' &&
-        typeof entity.clientSeq === 'number' &&
-        entity.data &&
-        typeof entity.data === 'object',
+      entity &&
+      typeof entity.id === 'string' &&
+      typeof entity.entityType === 'string' &&
+      typeof entity.version === 'number' &&
+      typeof entity.clientSeq === 'number' &&
+      entity.data &&
+      typeof entity.data === 'object'
     );
   }
 

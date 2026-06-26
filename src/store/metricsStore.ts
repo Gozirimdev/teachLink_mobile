@@ -75,9 +75,9 @@ export const useMetricsStore = create<MetricsState>((set, get) => ({
     }
   },
 
-  setActiveView: (view) => set({ activeView: view }),
+  setActiveView: view => set({ activeView: view }),
 
-  setAutoRefresh: (enabled) => {
+  setAutoRefresh: enabled => {
     const { _intervalHandle, refreshIntervalMs, refresh } = get();
 
     if (!enabled) {
@@ -99,7 +99,7 @@ export const useMetricsStore = create<MetricsState>((set, get) => ({
     set({ autoRefreshEnabled: true, _intervalHandle: handle });
   },
 
-  setRefreshInterval: (ms) => {
+  setRefreshInterval: ms => {
     const { autoRefreshEnabled, _intervalHandle } = get();
 
     if (_intervalHandle) clearInterval(_intervalHandle);

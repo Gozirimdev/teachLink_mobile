@@ -40,7 +40,6 @@ export const SettingsPicker = <T extends string = string>({
   const selectedLabel = options.find(o => o.value === value)?.label ?? value;
 
   const handleSelect = (optionValue: T) => {
-     
     useHapticFeedback('light');
     onValueChange(optionValue);
     setIsOpen(false);
@@ -153,7 +152,7 @@ export const SettingsPicker = <T extends string = string>({
       </Modal>
     </>
   );
-}
+};
 
 const styles = StyleSheet.create({
   modalContainer: {

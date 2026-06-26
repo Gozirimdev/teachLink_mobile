@@ -169,7 +169,7 @@ export const SuspenseWithFallback = ({
       </Suspense>
     </LazyLoadErrorBoundary>
   );
-}
+};
 
 /**
  * Default loading fallback component
@@ -206,7 +206,7 @@ export const LazyLoadingFallback = ({ componentName }: { componentName?: string 
       `}</style>
     </div>
   );
-}
+};
 
 /**
  * Hook to track lazy loading metrics

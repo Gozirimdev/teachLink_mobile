@@ -4,9 +4,10 @@ import { getInitialDeepLink, subscribeToDeepLinks } from '../services/deepLinkin
 
 import type { ParsedDeepLink } from '../utils/linkParser';
 
-export function useDeepLink(
-  onDeepLink?: (deepLink: ParsedDeepLink) => void
-): { deepLink: ParsedDeepLink | null; hasDeepLink: boolean } {
+export function useDeepLink(onDeepLink?: (deepLink: ParsedDeepLink) => void): {
+  deepLink: ParsedDeepLink | null;
+  hasDeepLink: boolean;
+} {
   const [deepLink, setDeepLink] = useState<ParsedDeepLink | null>(null);
 
   useEffect(() => {
@@ -24,7 +25,7 @@ export function useDeepLink(
 
     initialize();
 
-    const unsubscribe = subscribeToDeepLinks((payload) => {
+    const unsubscribe = subscribeToDeepLinks(payload => {
       if (!isMounted) {
         return;
       }

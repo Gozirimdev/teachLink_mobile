@@ -240,7 +240,7 @@ class FontService {
     let totalSize = 0;
     let expiredCount = 0;
 
-    this.metadata.forEach((metadata) => {
+    this.metadata.forEach(metadata => {
       totalSize += metadata.size;
       if (now - metadata.lastUsed > this.defaultSettings.cacheMaxAge) {
         expiredCount++;

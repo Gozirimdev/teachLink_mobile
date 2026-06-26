@@ -8,13 +8,13 @@ interface DeviceState {
   lowPowerMode: boolean;
   /** True when the app is backgrounded (not visible to the user) */
   isInBackground: boolean;
-  
+
   // Actions
   updateBatteryInfo: (level: number, state: Battery.BatteryState, lowPowerMode: boolean) => void;
   setIsInBackground: (isBg: boolean) => void;
 }
 
-export const useDeviceStore = create<DeviceState>((set) => ({
+export const useDeviceStore = create<DeviceState>(set => ({
   batteryLevel: 1,
   batteryState: Battery.BatteryState.UNKNOWN,
   isLowBattery: false,

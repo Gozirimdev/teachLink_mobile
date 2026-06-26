@@ -199,6 +199,6 @@ const PrimaryButton = ({
       )}
     </TouchableOpacity>
   );
-}
+};
 
 export default memo(PrimaryButton);

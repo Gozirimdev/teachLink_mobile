@@ -3,15 +3,15 @@ import * as FileSystem from 'expo-file-system';
 import { ArrowDown, ArrowUp, ArrowUpDown, Filter, FilterX, Upload } from 'lucide-react-native';
 import React, { useCallback, useMemo, useState } from 'react';
 import {
-    ActivityIndicator,
-    FlatList,
-    ListRenderItemInfo,
-    ScrollView,
-    Share,
-    StyleSheet,
-    Text,
-    TouchableOpacity,
-    View,
+  ActivityIndicator,
+  FlatList,
+  ListRenderItemInfo,
+  ScrollView,
+  Share,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
 } from 'react-native';
 
 import { GridExporter } from './GridExporter';
@@ -154,7 +154,12 @@ export const AdvancedDataGrid = <T extends GridRow = GridRow>({
         />
 
         {/* ── Scrollable grid area ─────────────────────────────────────────── */}
-        <ScrollView horizontal showsHorizontalScrollIndicator style={styles.horizontalScroll} removeClippedSubviews={true}>
+        <ScrollView
+          horizontal
+          showsHorizontalScrollIndicator
+          style={styles.horizontalScroll}
+          removeClippedSubviews={true}
+        >
           <View style={{ width: totalWidth }}>
             {/* Column headers */}
             <HeaderRow
@@ -192,11 +197,7 @@ export const AdvancedDataGrid = <T extends GridRow = GridRow>({
                     }}
                   >
                     {columnWidths.map((_cw, j) => (
-                      <Skeleton
-                        key={j}
-                        width={j === 0 ? 80 : j % 3 === 0 ? 100 : 70}
-                        height={14}
-                      />
+                      <Skeleton key={j} width={j === 0 ? 80 : j % 3 === 0 ? 100 : 70} height={14} />
                     ))}
                   </View>
                 ))}
@@ -353,9 +354,7 @@ const GridToolbar = ({
           </View>
         )}
       </View>
-      {showExporter && (
-        <GridExporter onExport={onExport} disabled={activeType !== null} />
-      )}
+      {showExporter && <GridExporter onExport={onExport} disabled={activeType !== null} />}
       {showImporter && (
         <TouchableOpacity
           style={[styles.btn, activeType === 'import' && styles.btnDisabled]}

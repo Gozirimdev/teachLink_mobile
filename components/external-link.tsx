@@ -22,4 +22,4 @@ export const ExternalLink = ({ href, ...rest }: Props) => {
       }}
     />
   );
-}
+};

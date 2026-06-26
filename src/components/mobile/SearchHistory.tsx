@@ -115,7 +115,7 @@ export const SearchHistory = ({ onSelectQuery, maxItems = 10 }: SearchHistoryPro
       />
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {

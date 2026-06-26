@@ -149,7 +149,10 @@ class FeatureCan {
         fallbackAvailable: true,
         fallbackDescription: 'Users can select from their photo library',
       };
-      appLogger.errorSync('[FeatureCapabilities] Camera check failed', error instanceof Error ? error : new Error(String(error)));
+      appLogger.errorSync(
+        '[FeatureCapabilities] Camera check failed',
+        error instanceof Error ? error : new Error(String(error))
+      );
     }
   }
 
@@ -204,7 +207,10 @@ class FeatureCan {
         fallbackAvailable: true,
         fallbackDescription: 'In-app notifications will be shown instead when the app is active',
       };
-      appLogger.errorSync('[FeatureCapabilities] Push notification check failed', error instanceof Error ? error : new Error(String(error)));
+      appLogger.errorSync(
+        '[FeatureCapabilities] Push notification check failed',
+        error instanceof Error ? error : new Error(String(error))
+      );
     }
   }
 
@@ -229,7 +235,10 @@ class FeatureCan {
    */
   public isFeatureAvailable(feature: FeatureType): boolean {
     const featureInfo = this.getFeatureInfo(feature);
-    return featureInfo.status === FeatureStatus.AVAILABLE || featureInfo.status === FeatureStatus.DEGRADED;
+    return (
+      featureInfo.status === FeatureStatus.AVAILABLE ||
+      featureInfo.status === FeatureStatus.DEGRADED
+    );
   }
 
   /**

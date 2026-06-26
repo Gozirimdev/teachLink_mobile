@@ -30,7 +30,7 @@ export function useNetworkStatus() {
     setIsChecking(true);
     try {
       const networkState = await Network.getNetworkStateAsync();
-      
+
       // Update network status
       setNetworkStatus({
         isConnected: networkState.isConnected,

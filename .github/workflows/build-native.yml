@@ -51,15 +51,15 @@ jobs:
   build-android:
     name: Build Android
     runs-on: ubuntu-latest
-    if: github.event.inputs.platform == 'android' || github.event.inputs.platform == 'all' || github.event.inputs.platform == null
+    if: (github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository) && (github.event.inputs.platform == 'android' || github.event.inputs.platform == 'all' || github.event.inputs.platform == null)
     timeout-minutes: 30
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
           node-version: 20
 
@@ -67,7 +67,7 @@ jobs:
       # 📦 DEPENDENCY CACHING
       # ==============================
       - name: Cache node_modules
-        uses: actions/cache@v4
+        uses: actions/cache@v6
         with:
           path: node_modules
           key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
@@ -81,7 +81,7 @@ jobs:
       # 🤖 GRADLE CACHING
       # ==============================
       - name: Cache Gradle wrapper
-        uses: actions/cache@v4
+        uses: actions/cache@v6
         with:
           path: ~/.gradle/wrapper
           key: ${{ runner.os }}-gradle-wrapper-${{ hashFiles('android/gradle/wrapper/gradle-wrapper.properties') }}
@@ -89,7 +89,7 @@ jobs:
             ${{ runner.os }}-gradle-wrapper-
 
       - name: Cache Gradle dependencies
-        uses: actions/cache@v4
+        uses: actions/cache@v6
         with:
           path: |
             ~/.gradle/caches
@@ -99,7 +99,7 @@ jobs:
             ${{ runner.os }}-gradle-
 
       - name: Cache Android build output
-        uses: actions/cache@v4
+        uses: actions/cache@v6
         with:
           path: |
             android/app/build
@@ -119,7 +119,7 @@ jobs:
           token: ${{ secrets.EXPO_TOKEN }}
 
       - name: Cache EAS build
-        uses: actions/cache@v4
+        uses: actions/cache@v6
         with:
           path: |
             ~/.eas
@@ -139,7 +139,7 @@ jobs:
           EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
 
       - name: Upload Android artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: android-build-${{ github.event.inputs.profile || 'preview' }}
           path: build-output/*
@@ -151,15 +151,15 @@ jobs:
   build-ios:
     name: Build iOS
     runs-on: macos-14
-    if: github.event.inputs.platform == 'ios' || github.event.inputs.platform == 'all' || github.event.inputs.platform == null
+    if: (github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository) && (github.event.inputs.platform == 'ios' || github.event.inputs.platform == 'all' || github.event.inputs.platform == null)
     timeout-minutes: 45
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
           node-version: 20
 
@@ -167,7 +167,7 @@ jobs:
       # 📦 DEPENDENCY CACHING
       # ==============================
       - name: Cache node_modules
-        uses: actions/cache@v4
+        uses: actions/cache@v6
         with:
           path: node_modules
           key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
@@ -181,7 +181,7 @@ jobs:
       # 🍎 COCOAPODS CACHING
       # ==============================
       - name: Cache CocoaPods
-        uses: actions/cache@v4
+        uses: actions/cache@v6
         with:
           path: |
             ios/Pods
@@ -195,7 +195,7 @@ jobs:
       # 🏗️ XCODE DERIVED DATA CACHE
       # ==============================
       - name: Cache Xcode DerivedData
-        uses: actions/cache@v4
+        uses: actions/cache@v6
         with:
           path: |
             ~/Library/Developer/Xcode/DerivedData
@@ -215,7 +215,7 @@ jobs:
           token: ${{ secrets.EXPO_TOKEN }}
 
       - name: Cache EAS build
-        uses: actions/cache@v4
+        uses: actions/cache@v6
         with:
           path: |
             ~/.eas
@@ -235,7 +235,7 @@ jobs:
           EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
 
       - name: Upload iOS artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: ios-build-${{ github.event.inputs.profile || 'preview' }}
           path: build-output/*

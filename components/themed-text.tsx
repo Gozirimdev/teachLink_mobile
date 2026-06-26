@@ -43,7 +43,7 @@ const ThemedTextComponent = ({
   };
 
   return <Text style={[{ color }, scaledStyle, style]} allowFontScaling={false} {...rest} />;
-}
+};
 
 const styles = StyleSheet.create({
   default: {

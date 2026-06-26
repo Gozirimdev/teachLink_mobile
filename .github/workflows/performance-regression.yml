@@ -19,9 +19,9 @@ jobs:
     name: Bundle Size
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v6
         with:
           node-version: 20
           cache: npm
@@ -70,7 +70,7 @@ jobs:
 
       # Restore cached baseline bundle sizes for regression comparison
       - name: Restore baseline bundle sizes
-        uses: actions/cache@v4
+        uses: actions/cache@v6
         with:
           path: reports/bundle-sizes-baseline.json
           key: perf-bundle-baseline-${{ github.base_ref || 'main' }}
@@ -112,13 +112,13 @@ jobs:
 
       - name: Cache bundle size baseline
         if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-        uses: actions/cache@v4
+        uses: actions/cache@v6
         with:
           path: reports/bundle-sizes-baseline.json
           key: perf-bundle-baseline-main
 
       - name: Upload bundle size report
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: bundle-size-report
           path: reports/bundle-sizes.json
@@ -131,9 +131,9 @@ jobs:
     name: Startup Time
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v6
         with:
           node-version: 20
           cache: npm
@@ -148,7 +148,7 @@ jobs:
           STARTUP_BUDGET_MS: 2000
 
       - name: Restore startup baseline
-        uses: actions/cache@v4
+        uses: actions/cache@v6
         with:
           path: reports/startup-baseline.json
           key: perf-startup-baseline-${{ github.base_ref || 'main' }}
@@ -186,13 +186,13 @@ jobs:
 
       - name: Cache startup baseline
         if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-        uses: actions/cache@v4
+        uses: actions/cache@v6
         with:
           path: reports/startup-baseline.json
           key: perf-startup-baseline-main
 
       - name: Upload startup report
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: startup-time-report
           path: reports/startup-benchmark.json
@@ -205,7 +205,7 @@ jobs:
     name: API Latency (k6)
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       - name: Install k6
         run: |
@@ -230,7 +230,7 @@ jobs:
           API_BASE_URL: ${{ vars.PERF_API_BASE_URL || 'https://jsonplaceholder.typicode.com' }}
 
       - name: Restore API latency baseline
-        uses: actions/cache@v4
+        uses: actions/cache@v6
         with:
           path: reports/k6-baseline.json
           key: perf-api-baseline-${{ github.base_ref || 'main' }}
@@ -268,13 +268,13 @@ jobs:
 
       - name: Cache API latency baseline
         if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-        uses: actions/cache@v4
+        uses: actions/cache@v6
         with:
           path: reports/k6-baseline.json
           key: perf-api-baseline-main
 
       - name: Upload k6 report
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: api-latency-report
           path: |
@@ -291,9 +291,9 @@ jobs:
     needs: [bundle-size, startup-time, api-latency]
     if: always()
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v6
         with:
           node-version: 20
           cache: npm
@@ -302,7 +302,7 @@ jobs:
         run: npm ci
 
       - name: Download all reports
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v8
         with:
           path: reports
           merge-multiple: true
@@ -314,7 +314,7 @@ jobs:
 
       - name: Upload regression report
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: regression-report
           path: reports/regression-report.json
@@ -322,7 +322,8 @@ jobs:
 
       - name: Post PR comment
         if: github.event_name == 'pull_request' && always()
-        uses: actions/github-script@v7
+        continue-on-error: true
+        uses: actions/github-script@v9
         with:
           script: |
             const fs = require('fs');

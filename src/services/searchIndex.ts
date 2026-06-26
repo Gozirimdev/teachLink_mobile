@@ -20,12 +20,64 @@ const FIELD_WEIGHTS = {
 } as const;
 
 const STOP_WORDS = new Set([
-  'a', 'an', 'the', 'and', 'or', 'but', 'in', 'on', 'at', 'to', 'for',
-  'of', 'with', 'by', 'from', 'is', 'are', 'was', 'be', 'been', 'being',
-  'have', 'has', 'had', 'do', 'does', 'did', 'will', 'would', 'could',
-  'should', 'may', 'might', 'can', 'this', 'that', 'these', 'those',
-  'it', 'its', 'you', 'your', 'we', 'our', 'they', 'their', 'he', 'she',
-  'as', 'if', 'not', 'no', 'so', 'up', 'out', 'about', 'more', 'also',
+  'a',
+  'an',
+  'the',
+  'and',
+  'or',
+  'but',
+  'in',
+  'on',
+  'at',
+  'to',
+  'for',
+  'of',
+  'with',
+  'by',
+  'from',
+  'is',
+  'are',
+  'was',
+  'be',
+  'been',
+  'being',
+  'have',
+  'has',
+  'had',
+  'do',
+  'does',
+  'did',
+  'will',
+  'would',
+  'could',
+  'should',
+  'may',
+  'might',
+  'can',
+  'this',
+  'that',
+  'these',
+  'those',
+  'it',
+  'its',
+  'you',
+  'your',
+  'we',
+  'our',
+  'they',
+  'their',
+  'he',
+  'she',
+  'as',
+  'if',
+  'not',
+  'no',
+  'so',
+  'up',
+  'out',
+  'about',
+  'more',
+  'also',
 ]);
 
 interface IndexEntry {
@@ -62,7 +114,7 @@ function addEntry(
   entries: Record<string, IndexEntry[]>,
   token: string,
   docId: string,
-  score: number,
+  score: number
 ): void {
   const list = (entries[token] ??= []);
   const existing = list.find(e => e.docId === docId);
@@ -190,7 +242,7 @@ class SearchIndexService {
     const idx = buildIndex(courses);
     this._mount(idx);
     appLogger.infoSync(
-      `[SearchIndex] built ${idx.courseIds.length} docs in ${Date.now() - start}ms`,
+      `[SearchIndex] built ${idx.courseIds.length} docs in ${Date.now() - start}ms`
     );
     await this._persist(idx);
   }

@@ -58,6 +58,6 @@ export const SettingsSection = ({ title, footer, children }: SettingsSectionProp
       ) : null}
     </View>
   );
-}
+};
 
 export default SettingsSection;

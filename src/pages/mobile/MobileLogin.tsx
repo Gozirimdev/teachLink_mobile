@@ -1,32 +1,32 @@
 import { LinearGradient } from 'expo-linear-gradient';
 import {
-    AlertCircle,
-    Apple,
-    BookOpen,
-    Chrome,
-    Eye,
-    EyeOff,
-    Lock,
-    LogIn,
-    Mail,
+  AlertCircle,
+  Apple,
+  BookOpen,
+  Chrome,
+  Eye,
+  EyeOff,
+  Lock,
+  LogIn,
+  Mail,
 } from 'lucide-react-native';
 import React, { useEffect, useRef, useState } from 'react';
-import { Controller, useForm } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import {
-    ActivityIndicator,
-    Alert,
-    Platform,
-    SafeAreaView,
-    ScrollView,
-    StyleSheet,
-    Switch,
-    Text,
-    TextInput,
-    TouchableOpacity,
-    View,
+  ActivityIndicator,
+  Alert,
+  Platform,
+  SafeAreaView,
+  ScrollView,
+  StyleSheet,
+  Switch,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
 } from 'react-native';
 
-
+import { DelegatedKeyboardAvoidingView } from '../../components/common/DelegatedKeyboardAvoidingView';
 import { BiometricInlineButton, BiometricPrompt } from '../../components/mobile/BiometricPrompt';
 import { DelegatedKeyboardAvoidingView } from '../../components/common/DelegatedKeyboardAvoidingView';
 import { MobileFormInput } from '../../components/mobile/MobileFormInput';
@@ -62,17 +62,14 @@ export const MobileLogin: React.FC<MobileLoginProps> = ({
   isDark = false,
 }) => {
   // ── Form ─────────────────────────────────────────────────────────────────
-  const {
-    control,
-    handleSubmit,
-    setValue,
-    formState: { errors },
-  } = useForm<LoginFormValues>({ defaultValues: { email: '', password: '' } });
+  const { handleSubmit, setValue } = useForm<LoginFormValues>({
+    defaultValues: { email: '', password: '' },
+  });
 
   const [showPassword, setShowPassword] = useState(false);
   const [rememberMe, setRememberMe] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [serverError, setServerError] = useState<string | null>(null);
+  const [, setServerError] = useState<string | null>(null);
   const [showBiometricModal, setShowBiometricModal] = useState(false);
 
   const passwordRef = useRef<TextInput>(null);

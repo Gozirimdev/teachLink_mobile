@@ -12,18 +12,18 @@ jobs:
   audit:
     name: npm audit + depcheck
     runs-on: ubuntu-latest
-    
+
     env:
       EXPO_PUBLIC_API_BASE_URL: https://api.teachlink.com
       EXPO_PUBLIC_SOCKET_URL: wss://api.teachlink.com
       EXPO_PUBLIC_APP_ENV: production
       EXPO_PUBLIC_ENABLE_PUSH_NOTIFICATIONS: true
-      
+
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       - name: Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
           node-version: '20'
           cache: 'npm'

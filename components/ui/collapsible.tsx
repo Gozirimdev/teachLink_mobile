@@ -31,7 +31,7 @@ export const Collapsible = ({ children, title }: PropsWithChildren & { title: st
       {isOpen && <ThemedView style={styles.content}>{children}</ThemedView>}
     </ThemedView>
   );
-}
+};
 
 const styles = StyleSheet.create({
   heading: {

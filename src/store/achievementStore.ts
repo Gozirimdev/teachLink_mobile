@@ -6,11 +6,14 @@ import { useReviewStore } from './reviewStore';
 import { inAppReviewService, ReviewTrigger } from '../services/inAppReview';
 
 const triggerAchievementReview = () => {
-  const { incrementAchievementsUnlocked, getMetrics, recordReviewRequest } = useReviewStore.getState();
+  const { incrementAchievementsUnlocked, getMetrics, recordReviewRequest } =
+    useReviewStore.getState();
   incrementAchievementsUnlocked();
-  inAppReviewService.requestReview(ReviewTrigger.ACHIEVEMENT_UNLOCKED, getMetrics()).then((result) => {
-    recordReviewRequest(ReviewTrigger.ACHIEVEMENT_UNLOCKED, result.shown, result.reason);
-  });
+  inAppReviewService
+    .requestReview(ReviewTrigger.ACHIEVEMENT_UNLOCKED, getMetrics())
+    .then(result => {
+      recordReviewRequest(ReviewTrigger.ACHIEVEMENT_UNLOCKED, result.shown, result.reason);
+    });
 };
 
 export type BadgeRarity = 'common' | 'rare' | 'epic' | 'legendary';

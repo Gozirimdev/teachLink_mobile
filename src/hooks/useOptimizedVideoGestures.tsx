@@ -160,6 +160,6 @@ export const OptimizedVideoGesturesView = ({
       <Animated.View style={[animatedStyle, style]}>{children}</Animated.View>
     </GestureDetector>
   );
-}
+};
 
 export default gestureHandlerRootHOC(OptimizedVideoGesturesView);

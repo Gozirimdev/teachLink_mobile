@@ -73,7 +73,10 @@ class LocationService {
         return false;
       }
     } catch (error) {
-      appLogger.errorSync('[LocationService] Error requesting permission', error instanceof Error ? error : new Error(String(error)));
+      appLogger.errorSync(
+        '[LocationService] Error requesting permission',
+        error instanceof Error ? error : new Error(String(error))
+      );
       return false;
     }
   }
@@ -87,7 +90,10 @@ class LocationService {
       this.locationPermissionStatus = status;
       return status === 'granted';
     } catch (error) {
-      appLogger.errorSync('[LocationService] Error checking permission', error instanceof Error ? error : new Error(String(error)));
+      appLogger.errorSync(
+        '[LocationService] Error checking permission',
+        error instanceof Error ? error : new Error(String(error))
+      );
       return false;
     }
   }
@@ -99,7 +105,8 @@ class LocationService {
   public async getCurrentLocation(): Promise<LocationData | null> {
     try {
       // Check permission
-      const hasPermission = this.locationPermissionStatus === 'granted' || await this.checkPermission();
+      const hasPermission =
+        this.locationPermissionStatus === 'granted' || (await this.checkPermission());
       if (!hasPermission) {
         appLogger.infoSync('[LocationService] Location permission not granted - GPS unavailable');
         featureCapabilities.getFeatureInfo(FeatureType.LOCATION);
@@ -136,7 +143,10 @@ class LocationService {
           locationData.address = parts.join(', ');
         }
       } catch (geocodeError) {
-        appLogger.infoSync('[LocationService] Reverse geocoding failed (non-fatal)', geocodeError instanceof Error ? geocodeError : new Error(String(geocodeError)));
+        appLogger.infoSync(
+          '[LocationService] Reverse geocoding failed (non-fatal)',
+          geocodeError instanceof Error ? geocodeError : new Error(String(geocodeError))
+        );
         // Continue with GPS coordinates even if geocoding fails
       }
 
@@ -155,7 +165,10 @@ class LocationService {
 
       return locationData;
     } catch (error) {
-      appLogger.errorSync('[LocationService] Error getting current location', error instanceof Error ? error : new Error(String(error)));
+      appLogger.errorSync(
+        '[LocationService] Error getting current location',
+        error instanceof Error ? error : new Error(String(error))
+      );
 
       // Feature degraded but not unavailable - return cached location if available
       featureCapabilities.getFeatureInfo(FeatureType.LOCATION);

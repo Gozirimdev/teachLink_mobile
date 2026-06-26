@@ -20,7 +20,7 @@ export const FontLoader = ({
 }: FontLoaderProps) => {
   const { loaded, error, progress } = useCustomFonts(Object.values(FONT_CONFIGS), {
     autoLoad: true,
-    onComplete: (status) => {
+    onComplete: status => {
       if (status.loaded) {
         onFontsLoaded?.();
       } else if (status.error) {
@@ -50,7 +50,7 @@ export const FontLoader = ({
   }
 
   return <>{children}</>;
-}
+};
 
 const styles = StyleSheet.create({
   container: {

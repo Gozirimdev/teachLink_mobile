@@ -28,16 +28,11 @@ const SEVERITY_COLOURS_DARK = {
 };
 
 export const AlertBanner: React.FC<AlertBannerProps> = ({ alert, onDismiss, isDark = false }) => {
-  const colours = isDark
-    ? SEVERITY_COLOURS_DARK[alert.severity]
-    : SEVERITY_COLOURS[alert.severity];
+  const colours = isDark ? SEVERITY_COLOURS_DARK[alert.severity] : SEVERITY_COLOURS[alert.severity];
 
   return (
     <View
-      style={[
-        styles.container,
-        { backgroundColor: colours.bg, borderColor: colours.border },
-      ]}
+      style={[styles.container, { backgroundColor: colours.bg, borderColor: colours.border }]}
       accessibilityRole="alert"
       accessibilityLabel={`${alert.severity} alert: ${alert.title}. ${alert.message}`}
     >

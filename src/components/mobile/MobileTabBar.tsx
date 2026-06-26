@@ -5,7 +5,6 @@ import { View, Text, TouchableOpacity } from 'react-native';
 
 import { useSafeArea } from '../../hooks';
 
-
 /**
  * Custom bottom tab bar component for TeachLink mobile
  */

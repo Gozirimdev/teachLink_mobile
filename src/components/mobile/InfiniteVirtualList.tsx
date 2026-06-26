@@ -1,14 +1,14 @@
 import * as Device from 'expo-device';
 import React, { useCallback, useMemo } from 'react';
 import {
-    ActivityIndicator,
-    FlatList,
-    FlatListProps,
-    Platform,
-    StyleProp,
-    StyleSheet,
-    View,
-    ViewStyle,
+  ActivityIndicator,
+  FlatList,
+  FlatListProps,
+  Platform,
+  StyleProp,
+  StyleSheet,
+  View,
+  ViewStyle,
 } from 'react-native';
 
 import { useMemoryMonitor } from '../../hooks';

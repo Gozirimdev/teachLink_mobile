@@ -1,8 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react-native';
 
-
-
 jest.mock('react-native-css-interop', () => ({
   cssInterop: jest.fn((component: any) => component),
   remapProps: jest.fn((component: any) => component),
@@ -51,12 +49,11 @@ jest.mock('../../src/components/mobile/VideoControls', () => {
   };
 });
 
-
-
 jest.mock('react-native-safe-area-context', () => {
   const MockSafeAreaProvider = ({ children }: any) => children;
   MockSafeAreaProvider.displayName = 'SafeAreaProvider';
-  const MockSafeAreaConsumer = ({ children }: any) => children({ top: 0, right: 0, bottom: 0, left: 0 });
+  const MockSafeAreaConsumer = ({ children }: any) =>
+    children({ top: 0, right: 0, bottom: 0, left: 0 });
   MockSafeAreaConsumer.displayName = 'SafeAreaConsumer';
   const MockSafeAreaView = ({ children }: any) => children;
   MockSafeAreaView.displayName = 'SafeAreaView';

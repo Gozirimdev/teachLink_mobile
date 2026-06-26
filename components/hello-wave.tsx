@@ -17,4 +17,4 @@ export const HelloWave = () => {
       👋
     </Animated.Text>
   );
-}
+};

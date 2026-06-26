@@ -38,4 +38,4 @@ export const IconSymbol = ({
   weight?: SymbolWeight;
 }) => {
   return <MaterialIcons color={color} size={size} name={MAPPING[name]} style={style} />;
-}
+};

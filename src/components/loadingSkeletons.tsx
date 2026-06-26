@@ -41,7 +41,7 @@ export const LoadingSkeleton = ({
       `}</style>
     </div>
   );
-}
+};
 
 /**
  * Video player loading skeleton
@@ -77,7 +77,7 @@ export const VideoPlayerSkeleton = () => {
       </div>
     </div>
   );
-}
+};
 
 /**
  * Data grid loading skeleton
@@ -95,7 +95,7 @@ export const DataGridSkeleton = () => {
       ))}
     </div>
   );
-}
+};
 
 /**
  * Profile card loading skeleton
@@ -141,7 +141,7 @@ export const ProfileSkeleton = () => {
       `}</style>
     </div>
   );
-}
+};
 
 /**
  * Settings page loading skeleton
@@ -159,7 +159,7 @@ export const SettingsSkeleton = () => {
       ))}
     </div>
   );
-}
+};
 
 /**
  * Quiz card loading skeleton
@@ -183,7 +183,7 @@ export const QuizSkeleton = () => {
       </div>
     </div>
   );
-}
+};
 
 /**
  * Search results loading skeleton
@@ -221,7 +221,7 @@ export const SearchResultsSkeleton = () => {
       `}</style>
     </div>
   );
-}
+};
 
 /**
  * Download queue loading skeleton
@@ -242,7 +242,7 @@ export const DownloadQueueSkeleton = () => {
       ))}
     </div>
   );
-}
+};
 
 /**
  * Generic card loading skeleton
@@ -260,7 +260,7 @@ export const CardSkeleton = ({ count = 3 }: { count?: number }) => {
       ))}
     </div>
   );
-}
+};
 
 /**
  * Course content loading skeleton
@@ -286,4 +286,4 @@ export const CourseContentSkeleton = () => {
       ))}
     </div>
   );
-}
+};

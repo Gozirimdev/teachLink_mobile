@@ -4,7 +4,7 @@ export * from './CourseCardSkeleton';
 export * from './CourseViewerSkeleton';
 export * from './DataGridSkeleton';
 export * from './FilterSheet';
-export * from './HealthDashboard';
+export { DashboardHeader, HealthDashboard, LatencyBar, ThresholdEditor } from './HealthDashboard';
 export * from './HomeScreenSkeleton';
 export * from './InfiniteVirtualList';
 export * from './MobileFormInput';
@@ -30,8 +30,7 @@ export * from './StatisticsDisplay';
 export * from './SubscriptionSkeleton';
 export * from './SwipeableCoordinator';
 export * from './SwipeableRow';
-export * from './TeamDashboard';
+export { DashboardSkeleton, HealthScoreRing, TeamDashboard } from './TeamDashboard';
 export * from './VirtualList';
 export * from './VoiceSearch';
 export * from './ProfiledScreen';
-
